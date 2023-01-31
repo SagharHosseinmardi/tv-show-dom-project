@@ -1,3 +1,39 @@
-#root {
-  color: red;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  
+}
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .5rem;
+}
+
+img{
+  width: auto;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 400px;
+  height: 500px;
+   border: 1px solid black;
+}
+
+h1 {
+  font-size: 1em;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+p{
+  padding: 1rem;
 }
