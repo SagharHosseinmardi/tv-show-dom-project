@@ -59,6 +59,8 @@ const countSpan = document.createElement("span");
 document.body.appendChild(countSpan);
 
 function displayEpisodesWithSearchBox(episodes) {
+
+  //call back functions
   displayDropBox(episodes);
   displayEpisodes(episodes);
 
@@ -98,6 +100,7 @@ function displayEpisodesWithSearchBox(episodes) {
   });
 }
 
+// initial display episodes (first function)
 function displayEpisodes(episodes) {
   episodes.forEach((episode) => {
     let li = document.createElement("li");
