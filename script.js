@@ -46,8 +46,12 @@ window.onload = setup;
 let list = document.createElement("ul");
 let count = 0;
 
+const select = document.createElement("select");
+const allOption = document.createElement("option");
+document.body.appendChild(select);
+
 const searchInput = document.createElement("input");
-searchInput.type = "Text";
+searchInput.type = "text";
 searchInput.placeholder = "search";
 document.body.appendChild(searchInput);
 
@@ -55,7 +59,9 @@ const countSpan = document.createElement("span");
 document.body.appendChild(countSpan);
 
 function displayEpisodesWithSearchBox(episodes) {
+  displayDropBox(episodes);
   displayEpisodes(episodes);
+
   countSpan.innerHTML = `Displaying ${count}/${episodes.length} episodes`;
 
   searchInput.addEventListener("input", () => {
@@ -113,4 +119,33 @@ function displayEpisodes(episodes) {
     li.appendChild(paragraph);
     count++;
   });
+}
+
+//DropBox search bar
+function displayDropBox(episodes) {
+  allOption.value = "All";
+  allOption.innerHTML = "All episodes";
+  select.appendChild(allOption);
+  episodes.forEach((episode) => {
+    let episodeCode = `S${("0" + episode.season).slice(-2)}E${(
+      "0" + episode.number
+    ).slice(-2)}`;
+    const eachOption = document.createElement("option");
+    eachOption.value = episode.id;
+    eachOption.innerHTML = `${episodeCode} - ${episode.name}`;
+    select.appendChild(eachOption);
+  });
+    select.addEventListener("change", () => {
+      let newArr = [];
+      if (select.value === "All") {
+        newArr = episodes;
+      } else {
+        newArr = episodes.filter(episode => select.value.includes(episode.id))
+      }
+      count = 0;
+      list.innerHTML = "";
+      displayEpisodes(newArr);
+      countSpan.innerHTML = `Displaying ${count}/${episodes.length} episode(s)`
+    })
+  
 }
