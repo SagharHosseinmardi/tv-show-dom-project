@@ -14,8 +14,21 @@
 // ------------------------------------------------------------------
 
 //You can edit ALL of the code here
-function setup() {
-  const allEpisodes = getAllEpisodes();
+
+async function fetchAllShows() {
+  try {
+    const response = await fetch(`https://api.tvmaze.com/shows/82/episodes`);
+   
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
+async function setup() {
+  const allEpisodes = await fetchAllShows();
   // makePageForEpisodes(allEpisodes);
   displayEpisodesWithSearchBox(allEpisodes);
 }
